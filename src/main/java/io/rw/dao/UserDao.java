@@ -3,7 +3,6 @@ package io.rw.dao;
 import io.rw.model.User;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class UserDao implements Dao<User> {
