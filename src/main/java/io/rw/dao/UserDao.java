@@ -3,6 +3,7 @@ package io.rw.dao;
 import io.rw.model.User;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class UserDao implements Dao<User> {
@@ -23,16 +24,22 @@ public class UserDao implements Dao<User> {
 
     @Override
     public List<User> findByName(String name) {
-        return null;
+        final TypedQuery<User> query = entityManager.createQuery("FROM User u WHERE u.login = :login", User.class);
+        query.setParameter("login", name);
+        return query.getResultList();
     }
 
     @Override
     public void persist(User user) {
-
+        entityManager.getTransaction().begin();
+        entityManager.persist(user);
+        entityManager.getTransaction().commit();
     }
 
     @Override
     public void delete(User user) {
-
+        entityManager.getTransaction().begin();
+        entityManager.remove(user);
+        entityManager.getTransaction().commit();
     }
 }
