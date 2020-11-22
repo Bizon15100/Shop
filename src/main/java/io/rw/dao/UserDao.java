@@ -31,15 +31,11 @@ public class UserDao implements Dao<User> {
 
     @Override
     public void persist(User user) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(user);
-        entityManager.getTransaction().commit();
+        
     }
 
     @Override
     public void delete(User user) {
-        entityManager.getTransaction().begin();
-        entityManager.remove(user);
-        entityManager.getTransaction().commit();
+
     }
 }
